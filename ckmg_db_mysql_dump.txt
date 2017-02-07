@@ -1,0 +1,639 @@
+-- MySQL dump 10.13  Distrib 5.5.46, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: ckmg_db
+-- ------------------------------------------------------
+-- Server version	5.5.46-0ubuntu0.14.04.2
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_id` (`group_id`,`permission_id`),
+  KEY `auth_group__permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id` (`permission_id`),
+  CONSTRAINT `auth_group_permission_group_id_689710a9a73b7457_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_group__permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
+  CONSTRAINT `auth__content_type_id_508cf46651277a81_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can add permission',2,'add_permission'),(5,'Can change permission',2,'change_permission'),(6,'Can delete permission',2,'delete_permission'),(7,'Can add group',3,'add_group'),(8,'Can change group',3,'change_group'),(9,'Can delete group',3,'delete_group'),(10,'Can add user',4,'add_user'),(11,'Can change user',4,'change_user'),(12,'Can delete user',4,'delete_user'),(13,'Can add content type',5,'add_contenttype'),(14,'Can change content type',5,'change_contenttype'),(15,'Can delete content type',5,'delete_contenttype'),(16,'Can add session',6,'add_session'),(17,'Can change session',6,'change_session'),(18,'Can delete session',6,'delete_session'),(19,'Can add contactus',7,'add_contactus'),(20,'Can change contactus',7,'change_contactus'),(21,'Can delete contactus',7,'delete_contactus'),(22,'Can add news',8,'add_news'),(23,'Can change news',8,'change_news'),(24,'Can delete news',8,'delete_news'),(25,'Can add subject',9,'add_subject'),(26,'Can change subject',9,'change_subject'),(27,'Can delete subject',9,'delete_subject'),(28,'Can add result',10,'add_result'),(29,'Can change result',10,'change_result'),(30,'Can delete result',10,'delete_result'),(31,'Can add advertise',11,'add_advertise'),(32,'Can change advertise',11,'change_advertise'),(33,'Can delete advertise',11,'delete_advertise'),(34,'Can add alumni',12,'add_alumni'),(35,'Can change alumni',12,'change_alumni'),(36,'Can delete alumni',12,'delete_alumni'),(37,'Can add buisness_plan',13,'add_buisness_plan'),(38,'Can change buisness_plan',13,'change_buisness_plan'),(39,'Can delete buisness_plan',13,'delete_buisness_plan'),(40,'Can add project',14,'add_project'),(41,'Can change project',14,'change_project'),(42,'Can delete project',14,'delete_project'),(43,'Can add theorynotes',15,'add_theorynotes'),(44,'Can change theorynotes',15,'change_theorynotes'),(45,'Can delete theorynotes',15,'delete_theorynotes'),(46,'Can add ppt',16,'add_ppt'),(47,'Can change ppt',16,'change_ppt'),(48,'Can delete ppt',16,'delete_ppt'),(49,'Can add modelpaper',17,'add_modelpaper'),(50,'Can change modelpaper',17,'change_modelpaper'),(51,'Can delete modelpaper',17,'delete_modelpaper'),(52,'Can add slider_image',18,'add_slider_image'),(53,'Can change slider_image',18,'change_slider_image'),(54,'Can delete slider_image',18,'delete_slider_image');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$20000$MnddmnLxkSm4$7nxQlTp4OuvEWxClY5gmbozTfBmfqI9Z55ibidt6pS4=',NULL,1,'root','','','raikwar.sunny@gmail.com',1,1,'2015-11-17 14:00:21'),(2,'pbkdf2_sha256$20000$d8A0GdtTJsr5$1xDJg0gvEZ/nLd3EAUVDG94c0t90x6DNiHPteYOONv4=','2016-01-27 10:05:09',1,'chetan','','','shiv.dangi71@gmail.com',1,1,'2015-11-19 10:13:08'),(3,'pbkdf2_sha256$20000$tYuzBy0bej1T$0CKc9fNutpQ36LGBcqq7f1OsLbuI15V4263j4LRM+e4=','2015-12-10 19:30:10',0,'ChetanR','Chetan','Raikwar','chetan_raikwar@yahoo.com',0,1,'2015-12-10 19:28:16'),(4,'pbkdf2_sha256$20000$0e14zF2vnliy$xYSBNWwz0DWqnH4+e0TCO1D5qEZ41bSBP27r0vKtG9E=','2015-12-28 09:06:45',0,'chetan12','chetan','raikwar','chetan_raikwar@yahoo.com',0,1,'2015-12-28 08:15:40'),(5,'pbkdf2_sha256$20000$pAZggZ63XSOz$M4VMBs+Zt/iJL/cFD6vKWpvUTf60CSj/hVxLfw53W/Q=','2016-01-13 07:56:23',0,'Chanchal05','Chanchal','Jain','jainchanchal2005@gmail.com',0,1,'2015-12-31 14:28:08'),(6,'pbkdf2_sha256$20000$BE51aduA9hDQ$ddVBVN3bTB2+YXbhtweRIkSts45qS8qAAEmSBw1jlvk=','2016-01-02 06:49:13',0,'rati@trivedi','rati','Trivedi','prapti1611@gmail.com',0,1,'2016-01-02 06:48:26'),(7,'pbkdf2_sha256$20000$QrHX49kP4BBV$vlR4wyMdgrt6Q1I8scUt3aRRyBeG3gqpwjvbs2DvNZE=','2016-01-02 10:51:17',0,'kapilshrimal','kapil','shrimal','kapil_shrimal@yahoo.com',0,1,'2016-01-02 10:50:53'),(8,'pbkdf2_sha256$20000$p8HQ9IHMplVt$kszBxj7r+y7Iw12GUatU6m0wJdKF8bkCaAT1/dE+1xQ=','2016-01-03 15:52:47',0,'Archana','Archana ','Patel','archanapatel.2510@gmail.com',0,1,'2016-01-03 15:52:13'),(9,'pbkdf2_sha256$20000$JGQQkgI5fDkq$hFN6OR1o4uOXsDYPB81yo7ETH3vAQzNaEhOLT4iH8HA=',NULL,0,'Chandu','Chandrashekhar','Azaad','Chandrashekharazaad07@gmail.com',0,1,'2016-01-04 04:37:01'),(10,'pbkdf2_sha256$20000$xxppqOaqNlWj$zXF1U/3o4WoG4Nwg/19gK+lEezw/7obaXXgAVVoQXns=','2016-02-20 16:18:45',0,'ankita','Ankita ','jain','ankita2705@ymail.com',0,1,'2016-01-11 16:42:39'),(11,'pbkdf2_sha256$20000$jHC7ZJZZ0HDB$+NRf6sFNo1HtR/dRKtzPbT9GA+Xs2cYV7T3+efnHSrw=','2016-01-15 11:27:00',0,'b','b','b','abc@gmail.com',0,1,'2016-01-15 09:59:57'),(12,'pbkdf2_sha256$20000$hVeB9pW1qHmz$nbHPNgq8AhyNZRck5Qksou58DmoahS++0QYUqQJ2ok8=','2016-01-18 09:14:25',1,'shiv','','','shiv.dangi71@gmail.com',1,1,'2016-01-18 08:07:14'),(13,'pbkdf2_sha256$20000$Tr1C1u5LeDMp$/sCgGS4vkP/Mmd2YXI6EyhqPn1Cs8VjtXi8wi/NoIfw=','2016-01-23 05:05:03',0,'rspatel143','sunil','patel','patelrs07@gmail.com',0,1,'2016-01-23 05:04:49'),(14,'pbkdf2_sha256$20000$EnmFAVuio8IE$VWQbkDXPx81p+4YBgf6SERZHaTvUSxSjzDM5+uA2Y4c=','2016-03-14 04:48:52',0,'Devi','Devi','Singh','radsbhutada@gmail.com',0,1,'2016-03-14 04:39:59'),(15,'pbkdf2_sha256$20000$sTmUYiD7jgsO$6r5y1s7pJ5yk1Y5gmY7HATy2LpMdmySmgNR+cxNUqo4=','2016-03-21 04:22:34',0,'Vshesh111','V','K','vshesh09@gmail.com',0,1,'2016-03-21 04:22:08'),(16,'pbkdf2_sha256$20000$CBZShZfzoQjF$wr8Z9f7FA1Cf/QgvmzuFdXjpVWwWHj6GzVSuSNG7Kqs=','2016-04-19 09:06:49',0,'suneelsms1','Sunil Shivde','Shivde ','sunielsms@rediffmail.com',0,1,'2016-04-19 09:06:06'),(17,'pbkdf2_sha256$20000$eFF4Q009NElG$qp8YZT49iCwzFJgpaSozDNKgiHCMN2/VYOF350gHstQ=',NULL,0,'abhishekkar1992','ABhishek','Kar','abhishekforbes@gmail.com',0,1,'2016-04-29 11:07:23'),(18,'pbkdf2_sha256$20000$e2YlBLzVgo5Q$4j/bExgeoe1T/wp8V0QqrYjTsidryOoeFEyZR9wX8Ik=','2016-05-18 08:05:48',0,'test','test','test','test@gmail.com',0,1,'2016-05-18 08:05:33'),(19,'pbkdf2_sha256$20000$mbR432qCM5SB$O1mN2s0IeQmpib84b1/qLkix0gCgqrmVYXfgxfUdp2w=',NULL,0,'Nidhi','Nidhi','sahu','nidhisahu9@gmail.com',0,1,'2016-09-12 12:03:47'),(20,'pbkdf2_sha256$20000$rZ5B3BAWbDcm$zFFNQJpJu7IQVh1LELAQdqqBGYZ2JpFZ3fxK0XhB9t8=','2016-09-12 12:09:31',0,'nidhisahu9@','Nidhi','Sahu','nidhisahu9@gmail.com',0,1,'2016-09-12 12:07:51'),(21,'pbkdf2_sha256$20000$y8MlhNUyA3oW$d/GCzYiS408mbbpj/LNkGJIHayUzlLhnwJAuuZ0df7Q=','2017-02-07 08:03:37',1,'ckmgadmin','','','',1,1,'2017-02-07 08:03:19');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`group_id`),
+  KEY `auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_4b5ed4ffdb8fd9b0_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`permission_id`),
+  KEY `auth_user_u_permission_id_384b62483d7071f0_fk_auth_permission_id` (`permission_id`),
+  CONSTRAINT `auth_user_user_permissi_user_id_7f0938558328534a_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `auth_user_u_permission_id_384b62483d7071f0_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_advertise`
+--
+
+DROP TABLE IF EXISTS `ckmg_advertise`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_advertise` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `advertiser_name` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `html_link` varchar(200) NOT NULL,
+  `status` varchar(1) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_advertise`
+--
+
+LOCK TABLES `ckmg_advertise` WRITE;
+/*!40000 ALTER TABLE `ckmg_advertise` DISABLE KEYS */;
+INSERT INTO `ckmg_advertise` VALUES (1,'chetan raikwar sucess system','Images/Advertisement/2.1.jpg','/ckmg/success_club/','A','2015-12-10'),(2,'DMIT Analysis','Images/Advertisement/2.2.png','/ckmg/dmitanalysis/','A','2015-12-10'),(3,'URJA','Images/Advertisement/2.3.png','/ckmg/urja/','A','2015-12-10'),(4,'DISCOVER YOURSELF','Images/Advertisement/2.4.png','/ckmg/urja/','A','2015-12-10');
+/*!40000 ALTER TABLE `ckmg_advertise` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_alumni`
+--
+
+DROP TABLE IF EXISTS `ckmg_alumni`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_alumni` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `batch` varchar(20) NOT NULL,
+  `year` int(11) NOT NULL,
+  `student_name` varchar(50) NOT NULL,
+  `college_name` varchar(100) NOT NULL,
+  `course` varchar(100) NOT NULL,
+  `company` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_alumni`
+--
+
+LOCK TABLES `ckmg_alumni` WRITE;
+/*!40000 ALTER TABLE `ckmg_alumni` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ckmg_alumni` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_buisness_plan`
+--
+
+DROP TABLE IF EXISTS `ckmg_buisness_plan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_buisness_plan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `buisness_title` varchar(100) NOT NULL,
+  `pdf_file` varchar(100) NOT NULL,
+  `ppt_file` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  `buisnessplan_desc` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_buisness_plan`
+--
+
+LOCK TABLES `ckmg_buisness_plan` WRITE;
+/*!40000 ALTER TABLE `ckmg_buisness_plan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ckmg_buisness_plan` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_contactus`
+--
+
+DROP TABLE IF EXISTS `ckmg_contactus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_contactus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fname` varchar(50) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone_no` int(11) NOT NULL,
+  `message` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_contactus`
+--
+
+LOCK TABLES `ckmg_contactus` WRITE;
+/*!40000 ALTER TABLE `ckmg_contactus` DISABLE KEYS */;
+INSERT INTO `ckmg_contactus` VALUES (1,'aurorqvurh','aurorqvurh','aurora_lehmkuhl82@rambler.ru',123456,'Good day http://www.ckmgindore.com your discount code: jw2ddXeWLu8iBN \r\n \r\nMailing your suggestions via the feedback form on the website of the organization all the countries of the world and the domain zones.  \r\n \r\nCan order the test for $10 (send 10 thousand messages), then the Supplement, and continue on... \r\nBesides distribution, you can buy these base prices below. \r\nFrom sent out by the base removed and the official sites of the countries hosting sites. \r\nAlso you can buy the base hosting sites and official sites anywhere in the world. \r\nP.S. \r\nPlease Do not respond to it letter from its e-mail box, as it is created automatically and anywhere will not come! \r\nMailbox for communication: contact-forma@seznam.cz \r\n \r\nPprice-list 351  domains: \r\n \r\n.us 3139563 sites USA - $200 \r\n.us 578927  sites International zone United States of America:.com .net .biz .info .name .tel .mobi .asia .xxx, and so on - $50 \r\n.mx 609278  sites United Mexican States- $80 \r\n.mx 86593 sites International zone Mexico:.com .net .biz .info .name .tel .mobi .asia .xxx, and so on -$50 \r\n.at 1356722 sites Republic of Austria - $100 \r\n.at 181907 sites International zone Austria:.com .net .biz .info .name .tel .mobi .asia .xxx, and so on -$50 \r\n.ca 2587463  sites CAN- $150 \r\n.ca 288395 sites International zone CAN:.com .net .biz .info .name .tel .mobi .asia .xxx, and so on -$50 \r\n.ar 551804  sites Argentine Republic - $80 \r\n.ar 551804  sites Argentina - $80 \r\n.at 1356722  sites Republic of Austria - $100 \r\n.br 2367290  sites Federative Republic of Brazil - $150 \r\n.au 243748  sites Australia - $80 \r\n.be 1349658  sites Kingdom of Belgium - $100 \r\n.ch 1471685  sites Swiss Confederation - $100 \r\n.cl 302082  sites Republic Of Chile - $80 \r\n.cn 5970231  sites China - $250 \r\n.cn 1372416  sites International zone China:.com .net .biz .info .name .tel .mobi .asia .xxx, and so on -$100 \r\n.co 1577728  sites Republic of Colombia  - $100 \r\n.cz 900208  sites Czech Republic - $80 \r\n.de 12224071  sites Germany - $400 \r\n.dk 1320155  sites Kingdom of Denmark - $100 \r\n.es 1685048  sites Kingdom of Spain - $100 \r\n.eu 3321576  sites Europe - $150 \r\n.fr 2298045  sites France - $150 \r\n.gr 356168  sites Hellenic republic - $80 \r\n.il 224167  sites Israel - $80 \r\n.io 149698  sites British Indian Ocean Territory - $50 \r\n.it 2255831  sites Italian Republic - $150 \r\n.jp 1126243  sites Japan - $100 \r\n.kz 101069  sites Kazakhstan - $50 \r\n.ua 286782  sites UKR - $80 \r\n.ma 48825  sites Morocco - $50 \r\n.nl 2980711  sites Kingdom of the Netherlands - $150 \r\n.my 283349  sites Malaysia- $80 \r\n.no 579185  sites Norway - $80 \r\n.nz 537127  sites New Zealand - $80 \r\n.pt 225136  sites Portugal - $80 \r\n.pl 1675325  sites Republic of Poland - $100 \r\n.se 112544  sites Kingdom Of Sweden - $50 \r\n.ro 430554  sites ROU - $80 \r\n.rs 75503  sites Republic of Serbia - $50 \r\n.sg 164351  sites Singapore - $50 \r\n.tk 15634253  sites Tokelau - $450 \r\n.za 803189  sites South Africa - $80 \r\n.tr 317690  sites Turkey - $80 \r\n.tw 89857  sites Taiwan - $50 \r\n.tv 512500  sites Tuvalu - $80 \r\n.uk 2679335  sites Great Britain- $150 \r\n.ee 78161  sites Republic Of Estonia- $50 \r\n.asia 228418  sites - $80 \r\n.?? (.xn--p1ai) 869759  sites Russian Federation - $80 \r\n.com.ru, .net.ru, .org.ru, .spb.ru, .msk.ru  78068  sites Russia - $50 \r\n.su 125358  sites Russian Federation - $50 \r\n.ru 5075935  sites Russia - $250 \r\n.attorney 8224  sites legal organizations and attorneys- $50 \r\n.audio 23052  sites stereo/sound systems, music- $50 \r\n.az 11103  sites Azerbaijan - $50 \r\n.band 7390  sites - $50 \r\n.bayern 29871  sites - $50 \r\n.beer 11834  sites breweries and beer aficionados - $50 \r\n.berlin 58088  sites Berlin, Federal Republic of Germany- $50 \r\n.bg 13251  sites Republic Of Bulgaria - $50 \r\n.bi 1567  sites Republic Of Burundi- $50 \r\n.bid 107425  sites - $50 \r\n.bike 13714  sites - $50 \r\n.bio 12702  sites biographies, biodiversity- $50 \r\n.black 6582  sites - $50 \r\n.blackfriday 12106  sites - $50 \r\n.blue 16852  sites - $50 \r\n.bm 8093  sites BMU - $50 \r\n.boutique 7523  sites - $50 \r\n.brussels 6114  sites - $50 \r\n.business 10803  sites - $50 \r\n.buzz 9367  sites - $50 \r\n.by 24342  sites Belarus - $50 \r\n.bzh 5303  sites - $50 \r\n.cafe 5150  sites - $50 \r\n.camera 5236  sites - $50 \r\n.camp 5530  sites - $50 \r\n.cards 5067  sites - $50 \r\n.care 10766  sites - $50 \r\n.careers 6799  sites - $50 \r\n.casa 18918  sites - $50 \r\n.cat 66000  sites - $50 \r\n.cc 46723  sites  Cocos Islands- $50 \r\n.center 29966  sites - $50 \r\n.chat 7324  sites - $50 \r\n.christmas 15255  sites - $50 \r\n.church 12541  sites - $50 \r\n.ci 5664  sites Cote d\'Ivoire- $50 \r\n.city 16679  sites - $50 \r\n.click 181015  sites - $50 \r\n.clothing 13639  sites - $50 \r\n.club 564417  sites - $80 \r\n.cm 12002  sites Republic Of Cameroon- $50 \r\n.coach 5836  sites flights and motor coaches travel- $50 \r\n.coffee 10097  sites - $50 \r\n.cologne 5037  sites - $50 \r\n.com.cy 11092  sites - $50 \r\n.com.ni 23747  sites - $50 \r\n.com.np 32828  sites - $50 \r\n.community 8656  sites - $50 \r\n.company 42783  sites - $50 \r\n.construction 6404  sites - $50 \r\n.consulting 15520  sites - $50 \r\n.cool 10766  sites - $50 \r\n.coop 7500  sites - $50 \r\n.coop 7879  sites - $50 \r\n.country 7144  sites - $50 \r\n.cricket 33413  sites - $50 \r\n.cymru 5482  sites - $50 \r\n.date 116437  sites - $50 \r\n.deals 7532  sites - $50 \r\n.dental 5661  sites - $50 \r\n.design 23876  sites - $50 \r\n.diet 18291  sites - $50 \r\n.digital 12478  sites - $50 \r\n.direct 7942  sites - $50 \r\n.directory 18963  sites - $50 \r\n.do 5265  sites DOM- $50 \r\n.domains 7127  sites - $50 \r\n.download 25656  sites - $50 \r\n.edu.np 4183  sites higher education - $50 \r\n.education 17243  sites - $50 \r\n.email 53422  sites - $50 \r\n.enterprises 5053  sites - $50 \r\n.equipment 6898  sites - $50 \r\n.estate 10245  sites - $50 \r\n.events 15887  sites - $50 \r\n.expert 26846  sites - $50 \r\n.faith 39757  sites - $50 \r\n.farm 7902  sites - $50 \r\n.fashion 9313  sites - $50 \r\n.fi 116327  sites Finland - $50 \r\n.fit 7047  sites - $50 \r\n.fitness 6973  sites - $50 \r\n.flowers 25590  sites - $50 \r\n.fo 3104  sites FRO - $50 \r\n.forsale 7446  sites - $50 \r\n.foundation 6241  sites - $50 \r\n.frl 12840  sites - $50 \r\n.gallery 16903  sites - $50 \r\n.gd 4248  sites - $50 \r\n.ge 17360  sites - $50 \r\n.gift 12281  sites - $50 \r\n.global 20196  sites - $50 \r\n.gov.np 1677 sites national and state government agencies- $50 \r\n.graphics 7855  sites - $50 \r\n.gt 15251  sites - $50 \r\n.guide 12044  sites - $50 \r\n.guru 65588  sites - $50 \r\n.gy 2667  sites - $50 \r\n.hamburg 22985  sites - $50 \r\n.healthcare 6183  sites - $50 \r\n.help 34800  sites - $50 \r\n.hiphop 7264  sites - $50 \r\n.hk 116193  sites - $50 \r\n.hk 44398  sites - $50 \r\n.hn 4742  sites - $50 \r\n.holdings 5212  sites - $50 \r\n.holiday 5217  sites - $50 \r\n.host 5730  sites - $50 \r\n.hosting 15132  sites - $50 \r\n.house 13832  sites - $50 \r\n.hr 33575  sites - $50 \r\n.hu 618632  sites - $80 \r\n.id 24222  sites - $50 \r\n.ie 196000  sites - $50 \r\n.immo 10768  sites - $50 \r\n.immobilien 7794  sites - $50 \r\n.in 1143582  sites Republic Of India - $100 \r\n.ink 8825  sites - $50 \r\n.institute 7311  sites - $50 \r\n.international 1828  sites international entities - $50 \r\n.ir 427835  sites Iran- $80 \r\n.is 14876  sites Republic Of Iceland - $50 \r\n.jobs 89950  sites Employment- $50 \r\n.kaufen 9134  sites - $50 \r\n.kg 8929  sites Kyrgyz Republic - $50 \r\n.kim 36637  sites people named Kim- $50 \r\n.kitchen 5822  sites - $50 \r\n.kiwi 9972  sites - $50 \r\n.koeln 23485  sites - $50 \r\n.kr 205547  sites Korea- $50 \r\n.la 32000  sites Laos - $50 \r\n.land 14274  sites real estate- $50 \r\n.lawyer 12830  sites legal organizations and lawyers - $50 \r\n.legal 7022  sites lawyers and legal organizations- $50 \r\n.life 29931  sites - $50 \r\n.lighting 5876  sites - $50 \r\n.link 209593  sites - $50 \r\n.live 13848  sites - $50 \r\n.loan 148407  sites lenders and banks- $50 \r\n.lol 59470  sites laughing out loud- $50 \r\n.london 60443  sites London, Great Britain- $50 \r\n.love 15287  sites dating sites- $50 \r\n.lt 51083  sites Lithuania- $50 \r\n.lu 14194  sites Grand Duchy Of Luxembourg - $50 \r\n.lv 32886  sites Latvia- $50 \r\n.management 9288 sites business management - $50 \r\n.market 8350  sites marketing services and retailers- $50 \r\n.marketing 14262  sites marketing services- $50 \r\n.mc 2700  sites Principality Of Monaco - $50 \r\n.md 10425  sites Republic Of Moldova - $50 \r\n.me 761696  sites Montenegro - $80 \r\n.media 22231  sites general media interests - $50 \r\n.melbourne 8252  sites - $50 \r\n.menu 6512  sites restaurants- $50 \r\n.mg 3330  sites Republic Of Madagascar- $50 \r\n.miami 13231  sitesMiami, USA - $50 \r\n.mobi 688419  sites mobile devices - $80 \r\n.money 5228  sites financial- $50 \r\n.moscow 22067  sites Moscow Russian Federation- $50 \r\n.mw 1744  sites Malawi - $50 \r\n.name 130818  sites by name, individuals - $50 \r\n.network 13837  sites - $50 \r\n.news 59662  sites news sites- $50 \r\n.ninja 49007  sites - $50 \r\n.nrw 9596  sites - $50 \r\n.nu 39710  sites Niue- $50 \r\n.nyc 73153  sites - $50 \r\n.one 47863  sites - $50 \r\n.online 135973  sites - $50 \r\n.ooo 13427  sites - $50 \r\n.org.np 6317  sites - $50 \r\n.org.ua 41372  sites - $50 \r\n.ovh 39855  sites - $50 \r\n.paris 19783  sites - $50 \r\n.party 222578  sites social gatherings and nightclubs- $50 \r\n.pe 16586  sites Peru - $50 \r\n.pg 1829  sites Papua - $50 \r\n.ph 17960  sites Philippines - $50 \r\n.photo 22865  sites photo-sharing and photography - $50 \r\n.photography 50934  sites photo-sharing and photography- $50 \r\n.photos 18750  sites photography and photo-sharing- $50 \r\n.pics 29821  sites photography and photo-sharing- $50 \r\n.pictures 6207  sites photography and photo-sharing- $50 \r\n.pink 14373  sites those who like the color pink- $50 \r\n.pk 44474  sites Pakistan - $50 \r\n.porn 13023  sites pornography - $50 \r\n.press 8736  sites - $50 \r\n.pro 118600  sites professions- $50 \r\n.properties 10475  sites - $50 \r\n.property 41366  sites - $50 \r\n.pub 42703  sites - $50 \r\n.quebec 10402  sites - $50 \r\n.racing 27001  sites - $50 \r\n.realtor 73465  sites - $50 \r\n.red 71773  sites - $50 \r\n.ren 237303  sites - $50 \r\n.rentals 10823  sites short-term ownership - $50 \r\n.repair 6228  sites general maintenance/repair businesses- $50 \r\n.restaurant 5299  sites - $50 \r\n.review 65390  sites public reviews- $50 \r\n.reviews 16732  sites public reviews- $50 \r\n.rocks 57908  sites - $50 \r\n.ru.com  6500  sites Russian Federation - $50 \r\n.ruhr 11118  sites - $50 \r\n.sa 8605  sites Saudi Arabia- $50 \r\n.sale 7850  sites - $50 \r\n.sc 5318  sites Seychelles- $50 \r\n.school 5812  sites - $50 \r\n.science 337115  sites - $80 \r\n.scot 10675  sites - $50 \r\n.services 20796  sites - $50 \r\n.sex 8655  sites - $50 \r\n.sexy 22260  sites - $50 \r\n.shoes 5597  sites - $50 \r\n.si 39753  sites Slovenia- $50 \r\n.singles 5559  sites - $50 \r\n.site 86601  sites - $50 \r\n.sk 347101  sites Slovakia- $80 \r\n.ski 6771  sites - $50 \r\n.social 15208  sites - $50 \r\n.software 9450  sites - $50 \r\n.solar 6067  sites - $50 \r\n.solutions 43143  sites - $50 \r\n.space 112426  sites - $50 \r\n.studio 5101  sites - $50 \r\n.sucks 7083  sites - $50 \r\n.support 15577  sites - $50 \r\n.sv 7878  sites El Salvador- $50 \r\n.swiss 6300  sites - $50 \r\n.sydney 7837  sites - $50 \r\n.systems 17893  sites - $50 \r\n.tattoo 7554  sites tattoo aficionados- $50 \r\n.tc 16394  sites Turks and Caicos Islands- $50 \r\n.team 5128  sites team sports- $50 \r\n.tech 27200  sites - $50 \r\n.technology 23981 sites technology- $50 \r\n.tel 116752  sites Internet communication services- $50 \r\n.th 23968  sites Thailand- $50 \r\n.tips 34287  sites general help topics- $50 \r\n.tj 6504  sites Republic Of Tajikistan- $50 \r\n.to 16327  sites Kingdom Of Tonga- $50 \r\n.today 47996  sites - $50 \r\n.tokyo 45233  sites - $50 \r\n.tools 6469  sites manufacturing industries - $50 \r\n.top 1031307  sites - $100 \r\n.trade 23418  sites businesses- $50 \r\n.training 15992  sites training and how-tos - $50 \r\n.travel 18000  sites travel and tourism industry related- $50 \r\n.uno 19394  sites - $50 \r\n.uy 12673  sites Uruguay- $50 \r\n.ve 14018  sites Bolivarian Republic Of Venezuela - $50 \r\n.vegas 12948  sites Las Vegas Nevada United States of America - $50 \r\n.ventures 7366  sites - $50 \r\n.vg 8393  sites British Virgin Islands- $50 \r\n.video 11804  sites video sharing- $50 \r\n.vlaanderen 6262  sites - $50 \r\n.vn 76661  sites Socialist Republic Of Vietnam- $50 \r\n.wales 11463  sites - $50 \r\n.wang 629622  sites - $80 \r\n.watch 5080  sites Watches - $50 \r\n.webcam 71942  sites web cam shows and video sharing- $50 \r\n.website 122048  sites - $50 \r\n.wedding 6864  sites wedding-oriented businesses - $50 \r\n.wien 13064  sites - $50 \r\n.wiki 14629  sites wikis - $50 \r\n.win 591324  sites - $50 \r\n.work 95686  sites - $50 \r\n.works 8712  sites - $50 \r\n.world 26145  sites - $50 \r\n.ws 36610  sites Samoa- $50 \r\n.wtf 6848  sites - $50 \r\n.xin 58102  sites - $50 \r\n.xn--3ds443g 35898  sites - $50 \r\n.xn--55qx5d 48356  sites - $50 \r\n.xn--6qq986b3xl 22488  sites - $50 \r\n.xn--czru2d 11620  sites - $50 \r\n.xn--fiq228c5hs 17945  sites - $50 \r\n.xn--io0a7i 31399  sites - $50 \r\n.xn--j6w193g 31776  sites - $50 \r\n.xn--kput3i 19501  sites - $50 \r\n.xn--mgberp4a5d4ar 2536  sites - $50 \r\n.xn--rhqv96g 7723  sites - $50 \r\n.xn--ses554g 344539  sites - $80 \r\n.xxx 119879  sites adult entertainment- $50 \r\n.xyz 1790370  sites - $50 \r\n.yoga 7093  sites - $50 \r\n.zone 14029  sites - $50 \r\n.?????? (.xn--80adxhks) 19582  sites Moscow Russian Federation - $50 \r\n.??? (.xn--j1amh) 10563  sites UKR - $50 \r\n.academy 21046  sites academic institutes- $50 \r\n.accountant 15675 sites accountants and accounting firms - $50 \r\n.adult 10540  sites adult entertainment - $50 \r\n.ae 13405  sites UAE - $50 \r\n.aero  18325  sites air-transport industry - $50 \r\n.agency 25318  sites business associations - $50 \r\n.am 9025  sites Armenia- $50 \r\n.amsterdam 26141  sites Amsterdam, Netherlands - $50 \r\n.com 124228147  sites commercial - $1950 \r\n.net 15689222  sites network - $450 \r\n.org 10922428  sites organization - $350 \r\n.info 5454638  sites information - $250 \r\n.biz 2361884  sites business - $150'),(2,'sunil Shivde ','Management study','sunielsms@rediffmail.com',2147483647,'Management subject '),(3,'sunil Shivde ','MBA ','sunielsms@rediffmail.com',2147483647,'Management subject and it uses in life. '),(4,'finmolkmx','finmolkmx','internationalfundingservicesgp@gmx.com',123456,'Sir/Madam, \r\n \r\nDo you need funding, VFS is a financial consultant firm assisting business globally with their funding needs. \r\n \r\nIf you are interested in getting your business or project funded we can help with all your funding needs. \r\n \r\nWe can provide you with the funds to purchase equipment, business expansion, working capital and even business startups are welcome. \r\n \r\nWe also offer funding for more complex and large commercial projects. \r\n \r\nThis service offered by us, is free of charge, simply respond to this message and we will connect you with a lender that can assist you today. \r\n \r\nThank you for reading through and we look forward to doing business with you. \r\n \r\nPlease remember to complete our form here http://vanguard-fin.com/ in order to begin your loan process. \r\n \r\nRegards, \r\nSimon Smith'),(5,'finmolkmx','finmolkmx','internationalfundingservicesgp@gmx.com',123456,'Sir/Madam, \r\n \r\nDo you need funding, VFS is a financial consultant firm assisting business globally with their funding needs. \r\n \r\nIf you are interested in getting your business or project funded we can help with all your funding needs. \r\n \r\nWe can provide you with the funds to purchase equipment, business expansion, working capital and even business startups are welcome. \r\n \r\nWe also offer funding for more complex and large commercial projects. \r\n \r\nThis service offered by us, is free of charge, simply respond to this message and we will connect you with a lender that can assist you today. \r\n \r\nThank you for reading through and we look forward to doing business with you. \r\n \r\nPlease remember to complete our form here http://vanguard-fin.com/ in order to begin your loan process. \r\n \r\nRegards, \r\nSimon Smith'),(6,'finmolkmx','finmolkmx','internationalfundingservicesgp@gmx.com',123456,'Sir/Madam, \r\n \r\nDo you need funding, VFS is a financial consultant firm assisting business globally with their funding needs. \r\n \r\nIf you are interested in getting your business or project funded we can help with all your funding needs. \r\n \r\nWe can provide you with the funds to purchase equipment, business expansion, working capital and even business startups are welcome. \r\n \r\nWe also offer funding for more complex and large commercial projects. \r\n \r\nThis service offered by us, is free of charge, simply respond to this message and we will connect you with a lender that can assist you today. \r\n \r\nThank you for reading through and we look forward to doing business with you. \r\n \r\nPlease remember to complete our form here http://vanguard-fin.com/ in order to begin your loan process. \r\n \r\nRegards, \r\nSimon Smith'),(7,'Barnypok','Barnypok','',2147483647,'BOy7w7 http://www.FyLitCl7Pf7ojQdDUOLQOuaxTXbj5iNG.com'),(8,'Barnypok','Barnypok','',2147483647,'6g5I2U http://www.FyLitCl7Pf7ojQdDUOLQOuaxTXbj5iNG.com');
+/*!40000 ALTER TABLE `ckmg_contactus` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_modelpaper`
+--
+
+DROP TABLE IF EXISTS `ckmg_modelpaper`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_modelpaper` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `modelpaper_title` varchar(100) NOT NULL,
+  `pdf_file` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ckmg_modelpaper_ffaba1d1` (`subject_id`),
+  CONSTRAINT `ckmg_modelpaper_subject_id_79a9ceac5ce5de44_fk_ckmg_subject_id` FOREIGN KEY (`subject_id`) REFERENCES `ckmg_subject` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_modelpaper`
+--
+
+LOCK TABLES `ckmg_modelpaper` WRITE;
+/*!40000 ALTER TABLE `ckmg_modelpaper` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ckmg_modelpaper` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_news`
+--
+
+DROP TABLE IF EXISTS `ckmg_news`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_title` varchar(100) NOT NULL,
+  `link` varchar(200) NOT NULL,
+  `date` date NOT NULL,
+  `news_type` varchar(3) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_news`
+--
+
+LOCK TABLES `ckmg_news` WRITE;
+/*!40000 ALTER TABLE `ckmg_news` DISABLE KEYS */;
+INSERT INTO `ckmg_news` VALUES (1,'Asst Manager Post in SIDBI Bank','http://www.sidbi.in/?q=careers','2015-12-16','CO');
+/*!40000 ALTER TABLE `ckmg_news` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_ppt`
+--
+
+DROP TABLE IF EXISTS `ckmg_ppt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_ppt` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ppt_title` varchar(100) NOT NULL,
+  `ppt_file` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ckmg_ppt_ffaba1d1` (`subject_id`),
+  CONSTRAINT `ckmg_ppt_subject_id_4438506190f10736_fk_ckmg_subject_id` FOREIGN KEY (`subject_id`) REFERENCES `ckmg_subject` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_ppt`
+--
+
+LOCK TABLES `ckmg_ppt` WRITE;
+/*!40000 ALTER TABLE `ckmg_ppt` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ckmg_ppt` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_project`
+--
+
+DROP TABLE IF EXISTS `ckmg_project`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_project` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_title` varchar(100) NOT NULL,
+  `doc_file` varchar(100) NOT NULL,
+  `pdf_file` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  `project_desc` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_project`
+--
+
+LOCK TABLES `ckmg_project` WRITE;
+/*!40000 ALTER TABLE `ckmg_project` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ckmg_project` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_result`
+--
+
+DROP TABLE IF EXISTS `ckmg_result`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_result` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `batch` varchar(20) NOT NULL,
+  `year` int(11) NOT NULL,
+  `student_name` varchar(50) NOT NULL,
+  `college_name` varchar(100) NOT NULL,
+  `course` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_result`
+--
+
+LOCK TABLES `ckmg_result` WRITE;
+/*!40000 ALTER TABLE `ckmg_result` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ckmg_result` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_slider_image`
+--
+
+DROP TABLE IF EXISTS `ckmg_slider_image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_slider_image` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `slider_image` varchar(100) NOT NULL,
+  `image_quote` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_slider_image`
+--
+
+LOCK TABLES `ckmg_slider_image` WRITE;
+/*!40000 ALTER TABLE `ckmg_slider_image` DISABLE KEYS */;
+INSERT INTO `ckmg_slider_image` VALUES (1,'Images/Slider/slide1.jpg','Chetan Raikwar Success System'),(2,'Images/Slider/cropped-acceptance-in-meditation2_-_Copy.jpg','If you want to manage all the things ,time ,situation & person.Manage your mind and rest all automatically manage.'),(3,'Images/Slider/Untitled-111.jpg','For Registration Call 9584151124 ');
+/*!40000 ALTER TABLE `ckmg_slider_image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_subject`
+--
+
+DROP TABLE IF EXISTS `ckmg_subject`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_subject` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject_name` varchar(100) NOT NULL,
+  `subject_catagary` varchar(3) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_subject`
+--
+
+LOCK TABLES `ckmg_subject` WRITE;
+/*!40000 ALTER TABLE `ckmg_subject` DISABLE KEYS */;
+INSERT INTO `ckmg_subject` VALUES (1,'Management Principles and Practices (MPP/PPM) /Fundamental of Management (FOM)','CoS'),(2,'Organizational Behaviour (OB)','CoS'),(3,'Business Law/ Business Legislation (BL)','CoS'),(4,'Business Communication (BC)','CoS'),(5,'Business Environment','CoS'),(6,'Mathematics and Statistics for Managers','CoS'),(7,'Accounting for Managers ','CoS'),(8,'IT and E-Business Fundamentals','CoS');
+/*!40000 ALTER TABLE `ckmg_subject` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ckmg_theorynotes`
+--
+
+DROP TABLE IF EXISTS `ckmg_theorynotes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ckmg_theorynotes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `notes_title` varchar(100) NOT NULL,
+  `pdf_file` varchar(100) NOT NULL,
+  `ppt_file` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ckmg_theorynotes_subject_id_5cfeb6c79769d014_fk_ckmg_subject_id` (`subject_id`),
+  CONSTRAINT `ckmg_theorynotes_subject_id_5cfeb6c79769d014_fk_ckmg_subject_id` FOREIGN KEY (`subject_id`) REFERENCES `ckmg_subject` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckmg_theorynotes`
+--
+
+LOCK TABLES `ckmg_theorynotes` WRITE;
+/*!40000 ALTER TABLE `ckmg_theorynotes` DISABLE KEYS */;
+INSERT INTO `ckmg_theorynotes` VALUES (2,'Business Communication-Introduction','Docs/Theory_Notes/pdf/Business_Communication_-Introduction.pdf','Docs/Theory_Notes/ppt/Business_Communication_-Introduction.pdf','2015-12-31',4),(3,'PLANNING','Docs/Theory_Notes/pdf/MPP-Planning.pdf','Docs/Theory_Notes/ppt/MPP-Planning.pdf','2015-12-31',1),(4,'E-Business Fundamentals-Introduction','Docs/Theory_Notes/pdf/E-Business.pdf','Docs/Theory_Notes/ppt/E-Business.pdf','2015-12-31',8),(5,'Business Legislation-Company Act','Docs/Theory_Notes/pdf/Business_Legislation-Introduction.pdf','Docs/Theory_Notes/ppt/Business_Legislation-Introduction.pdf','2015-12-31',3),(6,'OB-Introduction & Nature','Docs/Theory_Notes/pdf/OB-IntroductionNature_Definition__Contributing_Fields.pdf','Docs/Theory_Notes/ppt/OB-IntroductionNature_Definition__Contributing_Fields.pdf','2015-12-31',2),(7,'Business Environment-Meaning & Type','Docs/Theory_Notes/pdf/Business_Environment-Introduction_and_Types.pdf','Docs/Theory_Notes/ppt/Business_Environment-Introduction_and_Types.pdf','2015-12-31',5),(10,'OB Models','Docs/Theory_Notes/pdf/Models_of_OB.pdf','Docs/Theory_Notes/ppt/Models_of_OB.pdf','2016-01-20',2),(11,' Management Thoughts/ Schools Theory ','Docs/Theory_Notes/pdf/Management_Thought.pdf','Docs/Theory_Notes/ppt/Management_Thought.pdf','2016-01-27',1),(12,'Management-Concepts','Docs/Theory_Notes/pdf/Management-Concept_of_Management.pdf','Docs/Theory_Notes/ppt/Management-Concept_of_Management.pdf','2016-01-27',1),(13,'Management-Functions','Docs/Theory_Notes/pdf/Management-Functions_of_Management.pdf','Docs/Theory_Notes/ppt/Management-Functions_of_Management.pdf','2016-01-27',1),(14,'Ansoff\'s Product Market Strategy','Docs/Theory_Notes/pdf/Ansoffs_Product_Market_Strategy.pdf','Docs/Theory_Notes/ppt/Ansoffs_Product_Market_Strategy.pdf','2016-01-27',1),(15,'Bases of Departmentation','Docs/Theory_Notes/pdf/Bases_of_Departmentation.pdf','Docs/Theory_Notes/ppt/Bases_of_Departmentation.pdf','2016-01-27',1),(16,'BCG Matrix','Docs/Theory_Notes/pdf/BCG_Matrix.pdf','Docs/Theory_Notes/ppt/BCG_Matrix.pdf','2016-01-27',1),(17,'Centralization & Decentralization','Docs/Theory_Notes/pdf/Centralization__Decentralization.pdf','Docs/Theory_Notes/ppt/Centralization__Decentralization.pdf','2016-01-27',1),(18,'Controlling Process','Docs/Theory_Notes/pdf/Controlling_Process.pdf','Docs/Theory_Notes/ppt/Controlling_Process.pdf','2016-01-27',1),(19,'Controlling Techniques','Docs/Theory_Notes/pdf/Controlling_Techniques.pdf','Docs/Theory_Notes/ppt/Controlling_Techniques.pdf','2016-01-27',1),(20,'Controlling Process','Docs/Theory_Notes/pdf/Controlling-Introduction.pdf','Docs/Theory_Notes/ppt/Controlling-Introduction.pdf','2016-01-27',1),(21,'Delegation','Docs/Theory_Notes/pdf/Delegation.pdf','Docs/Theory_Notes/ppt/Delegation.pdf','2016-01-27',1),(22,'GE-9 Matrix','Docs/Theory_Notes/pdf/GE-9_Matrix.pdf','Docs/Theory_Notes/ppt/GE-9_Matrix.pdf','2016-01-27',1),(23,'Line Organisation','Docs/Theory_Notes/pdf/Line_Organisation.pdf','Docs/Theory_Notes/ppt/Line_Organisation.pdf','2016-01-27',1),(24,'Management by Objective','Docs/Theory_Notes/pdf/MBO.pdf','Docs/Theory_Notes/ppt/MBO.pdf','2016-01-27',1),(25,'Objective','Docs/Theory_Notes/pdf/Objective.pdf','Docs/Theory_Notes/ppt/Objective.pdf','2016-01-27',1),(26,'Organizing-Introduction','Docs/Theory_Notes/pdf/Organizing-Introduction.pdf','Docs/Theory_Notes/ppt/Organizing-Introduction.pdf','2016-01-27',1),(27,'Policies-Decision Making Process','Docs/Theory_Notes/pdf/Policies-Decision_Making_Process.pdf','Docs/Theory_Notes/ppt/Policies-Decision_Making_Process.pdf','2016-01-27',1),(28,'Policies-Introduction','Docs/Theory_Notes/pdf/Policies-Introduction.pdf','Docs/Theory_Notes/ppt/Policies-Introduction.pdf','2016-01-27',1),(29,'Porter Strategies','Docs/Theory_Notes/pdf/Porter_Strategies.pdf','Docs/Theory_Notes/ppt/Porter_Strategies.pdf','2016-01-27',1),(30,'Span of Management','Docs/Theory_Notes/pdf/Span_of_Management.pdf','Docs/Theory_Notes/ppt/Span_of_Management.pdf','2016-01-27',1),(31,'Strategic Process Planning','Docs/Theory_Notes/pdf/Strategic_Process_Planning.pdf','Docs/Theory_Notes/ppt/Strategic_Process_Planning.pdf','2016-01-27',1),(32,'Strategy Selection-TOWS (SWOT)','Docs/Theory_Notes/pdf/Strategy_Selection-TOWS_SWOT.pdf','Docs/Theory_Notes/ppt/Strategy_Selection-TOWS_SWOT.pdf','2016-01-27',1),(33,'Taylor Scientific Management','Docs/Theory_Notes/pdf/Taylor_Scientific_Management.pdf','Docs/Theory_Notes/ppt/Taylor_Scientific_Management.pdf','2016-01-27',1),(34,'Attitude-Definition, Feature, Component, Factor, Methods, Values & Belief','Docs/Theory_Notes/pdf/Attitude-Definition_Feature_Component_Factor_Methods_Values__Belief.pdf','Docs/Theory_Notes/ppt/Attitude-Definition_Feature_Component_Factor_Methods_Values__Belief.pdf','2016-01-27',2),(35,'Challenges for OB, Trends','Docs/Theory_Notes/pdf/Challenges_for_OB_Trends.pdf','Docs/Theory_Notes/ppt/Challenges_for_OB_Trends.pdf','2016-01-27',2),(36,'Conflict-Nature, Definition, Source, Feature, Types, Levels','Docs/Theory_Notes/pdf/Conflict-Nature_Definition_Source_Feature_Types_Levels.pdf','Docs/Theory_Notes/ppt/Conflict-Nature_Definition_Source_Feature_Types_Levels.pdf','2016-01-27',2),(37,'Creating & Sustaining Culture','Docs/Theory_Notes/pdf/Creating__Sustaining_Culture.pdf','Docs/Theory_Notes/ppt/Creating__Sustaining_Culture.pdf','2016-01-27',2),(38,'Group Decision Making Process','Docs/Theory_Notes/pdf/Group_Decision_Making_Process.pdf','Docs/Theory_Notes/ppt/Group_Decision_Making_Process.pdf','2016-01-27',2),(39,'Group Structure','Docs/Theory_Notes/pdf/Group_Structure.pdf','Docs/Theory_Notes/ppt/Group_Structure.pdf','2016-01-27',2),(40,'Group Vs Team','Docs/Theory_Notes/pdf/Group_Vs_Team.pdf','Docs/Theory_Notes/ppt/Group_Vs_Team.pdf','2016-01-27',2),(41,'Group-Meaning, Definition, Feature, Need','Docs/Theory_Notes/pdf/Group-Meaning_Definition_Feature_Need.pdf','Docs/Theory_Notes/ppt/Group-Meaning_Definition_Feature_Need.pdf','2016-01-27',2),(42,'Herzberg\'s 2-factor Theory','Docs/Theory_Notes/pdf/Herzbergs_2-factor_Theory.pdf','Docs/Theory_Notes/ppt/Herzbergs_2-factor_Theory.pdf','2016-01-27',2),(43,'Lewin\'s 3-Step Model','Docs/Theory_Notes/pdf/Lewins_3-Step_Model.pdf','Docs/Theory_Notes/ppt/Lewins_3-Step_Model.pdf','2016-01-27',2),(44,'Managing Resistance to Change & Stress Management','Docs/Theory_Notes/pdf/Managing_Resistance_to_Change__Stress_Management.pdf','Docs/Theory_Notes/ppt/Managing_Resistance_to_Change__Stress_Management.pdf','2016-01-27',2),(45,'Maslow\'s Hierarchy Theory of Motivation','Docs/Theory_Notes/pdf/Maslows_Hierarchy_Theory_of_Motivation.pdf','Docs/Theory_Notes/ppt/Maslows_Hierarchy_Theory_of_Motivation.pdf','2016-01-27',2),(47,'Motivation-Definition, Importance, Nature','Docs/Theory_Notes/pdf/Motivation-Definition_Importance_Nature.pdf','Docs/Theory_Notes/ppt/Motivation-Definition_Importance_Nature.pdf','2016-01-27',2),(48,'Organisational Culture-Introduction, Characteristics, Importance, Function','Docs/Theory_Notes/pdf/Organisational_Culture-Introduction_Characteristics_Importance_Function.pdf','Docs/Theory_Notes/ppt/Organisational_Culture-Introduction_Characteristics_Importance_Function.pdf','2016-01-27',2),(49,'Perception-Factors, Application','Docs/Theory_Notes/pdf/Perception-Factors_Application.pdf','Docs/Theory_Notes/ppt/Perception-Factors_Application.pdf','2016-01-27',2),(50,'Personality-Meaning, Definition','Docs/Theory_Notes/pdf/Personality-Meaning_Definition.pdf','Docs/Theory_Notes/ppt/Personality-Meaning_Definition.pdf','2016-01-27',2),(51,'Process of Conflict','Docs/Theory_Notes/pdf/Process_of_Conflict.pdf','Docs/Theory_Notes/ppt/Process_of_Conflict.pdf','2016-01-27',2),(52,'Resistance to Change','Docs/Theory_Notes/pdf/Resistance_to_Change.pdf','Docs/Theory_Notes/ppt/Resistance_to_Change.pdf','2016-01-27',2),(53,'Roles of OB','Docs/Theory_Notes/pdf/Roles_of_OB.pdf','Docs/Theory_Notes/ppt/Roles_of_OB.pdf','2016-01-27',2),(54,'Team-Characteristics, Type','Docs/Theory_Notes/pdf/Team-Characteristics_Type.pdf','Docs/Theory_Notes/ppt/Team-Characteristics_Type.pdf','2016-01-27',2),(55,'Theories of Leadership','Docs/Theory_Notes/pdf/Theories_of_Leadership.pdf','Docs/Theory_Notes/ppt/Theories_of_Leadership.pdf','2016-01-27',2),(56,'Theories of Learning','Docs/Theory_Notes/pdf/Theories_of_Learning.pdf','Docs/Theory_Notes/ppt/Theories_of_Learning.pdf','2016-01-27',2),(57,'Theories of Personality','Docs/Theory_Notes/pdf/Theories_of_Personality.pdf','Docs/Theory_Notes/ppt/Theories_of_Personality.pdf','2016-01-27',2),(58,'X-Y Theory','Docs/Theory_Notes/pdf/X-Y_Theory.pdf','Docs/Theory_Notes/ppt/X-Y_Theory.pdf','2016-01-27',2),(59,'Types & Levels of Oranisational Culture','Docs/Theory_Notes/pdf/Types__Levels_of_Oranisational_Culture.pdf','Docs/Theory_Notes/ppt/Types__Levels_of_Oranisational_Culture.pdf','2016-01-27',2);
+/*!40000 ALTER TABLE `ckmg_theorynotes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_time` datetime NOT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `djang_content_type_id_697914295151027a_fk_django_content_type_id` (`content_type_id`),
+  KEY `django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id` (`user_id`),
+  CONSTRAINT `django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `djang_content_type_id_697914295151027a_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2015-12-10 07:05:33','1','chetan raikwar sucess system',1,'',11,2),(2,'2015-12-10 07:10:11','2','DMIT Analysis',1,'',11,2),(3,'2015-12-10 07:12:17','3','URJA',1,'',11,2),(4,'2015-12-10 07:13:51','4','DISCOVER YOURSELF',1,'',11,2),(5,'2015-12-10 07:18:34','1','Chetan Raikwar Success System',1,'',18,2),(6,'2015-12-16 07:26:37','2','If you want to manage all the things ,time ,situation & person.Manage your mind and rest all automatically manage.',1,'',18,2),(7,'2015-12-16 07:30:25','3','The Making of Yoddha Mindset ',1,'',18,2),(8,'2015-12-16 07:39:51','1','Asst Manager Post in SIDBI Bank',1,'',8,2),(9,'2015-12-31 06:57:54','1','Principles and Practices of Management/Fundamental of Management',1,'',9,2),(10,'2015-12-31 07:16:43','1','PLANNING',1,'',15,2),(11,'2015-12-31 07:18:47','1','PLANNING',2,'Changed ppt_file.',15,2),(12,'2015-12-31 07:23:57','2','Organizational Behaviour',1,'',9,2),(13,'2015-12-31 07:24:25','3','Business Law/ Business Legislation (BL)',1,'',9,2),(14,'2015-12-31 07:24:41','2','Organizational Behaviour (OB)',2,'Changed subject_name.',9,2),(15,'2015-12-31 07:25:22','1','Principles and Practices of Management/Fundamental of Management (MPP/PPM/FOM)',2,'Changed subject_name.',9,2),(16,'2015-12-31 07:25:37','1','PLANNING',2,'No fields changed.',15,2),(17,'2015-12-31 07:27:05','4','Business Communications (BC)',1,'',9,2),(18,'2015-12-31 07:27:25','3','Business Law/ Business Legislation (BL)',2,'Changed subject_catagary.',9,2),(19,'2015-12-31 07:38:26','5','Business Environment',1,'',9,2),(20,'2015-12-31 07:40:42','1','Management Principles and Practices (MPP/PPM) /Fundamental of Management (FOM)',2,'Changed subject_name.',9,2),(21,'2015-12-31 07:41:56','6','Mathematics and Statistics for Managers',1,'',9,2),(22,'2015-12-31 07:41:59','6','Mathematics and Statistics for Managers',2,'No fields changed.',9,2),(23,'2015-12-31 07:42:18','7','Accounting for Managers ',1,'',9,2),(24,'2015-12-31 07:43:30','8','IT and E-Business Fundamentals',1,'',9,2),(25,'2015-12-31 10:51:39','2','Business Communication-Introduction',1,'',15,2),(26,'2015-12-31 10:51:52','1','PLANNING',3,'',15,2),(27,'2015-12-31 10:52:22','3','PLANNING',1,'',15,2),(28,'2015-12-31 10:53:12','4','E-Business Fundamentals-Introduction',1,'',15,2),(29,'2015-12-31 10:53:26','4','Business Communication (BC)',2,'Changed subject_name.',9,2),(30,'2015-12-31 10:54:31','5','Business Legislation-Company Act',1,'',15,2),(31,'2015-12-31 10:55:50','6','OB-Introduction & Nature',1,'',15,2),(32,'2015-12-31 10:56:51','7','Business Environment-Meaning & Type',1,'',15,2),(33,'2015-12-31 11:23:21','3','100% Guaranteed Crash Course for MBA I Semester Students\r\nfor Registration Call 9584151124 ',2,'Changed slider_image and image_quote.',18,2),(34,'2015-12-31 11:24:50','3','100% Guaranteed Crash Course for MBA I Semester Students\r\nfor Registration Call 9584151124 ',2,'Changed slider_image.',18,2),(35,'2016-01-12 07:44:40','2','Business Communication-Introduction',2,'No fields changed.',15,2),(36,'2016-01-12 07:56:42','7','Accounting for Managers ',2,'No fields changed.',9,2),(37,'2016-01-18 08:15:32','8','ob1',1,'',15,12),(38,'2016-01-18 09:16:33','9','ob2',1,'',15,12),(39,'2016-01-18 09:17:04','9','ob2',3,'',15,12),(40,'2016-01-18 09:17:04','8','ob1',3,'',15,12),(41,'2016-01-20 09:40:08','10','OB Models',1,'',15,2),(42,'2016-01-27 09:13:01','11',' Management Thoughts/ Schools Theory ',1,'',15,2),(43,'2016-01-27 09:13:44','12','Management-Concepts',1,'',15,2),(44,'2016-01-27 09:14:16','13','Management-Functions',1,'',15,2),(45,'2016-01-27 09:14:50','14','Ansoff\'s Product Market Strategy',1,'',15,2),(46,'2016-01-27 09:15:13','15','Bases of Departmentation',1,'',15,2),(47,'2016-01-27 09:15:36','16','BCG Matrix',1,'',15,2),(48,'2016-01-27 09:16:14','17','Centralization & Decentralization',1,'',15,2),(49,'2016-01-27 09:16:37','18','Controlling Process',1,'',15,2),(50,'2016-01-27 09:16:59','19','Controlling Techniques',1,'',15,2),(51,'2016-01-27 09:17:48','20','Controlling Process',1,'',15,2),(52,'2016-01-27 09:18:50','21','Delegation',1,'',15,2),(53,'2016-01-27 09:23:31','22','GE-9 Matrix',1,'',15,2),(54,'2016-01-27 09:23:54','23','Line Organisation',1,'',15,2),(55,'2016-01-27 09:24:43','24','Management by Objective',1,'',15,2),(56,'2016-01-27 09:24:52','24','Management by Objective',2,'No fields changed.',15,2),(57,'2016-01-27 09:26:03','25','Objective',1,'',15,2),(58,'2016-01-27 09:28:11','26','Organizing-Introduction',1,'',15,2),(59,'2016-01-27 09:36:53','27','Policies-Decision Making Process',1,'',15,2),(60,'2016-01-27 09:37:26','28','Policies-Introduction',1,'',15,2),(61,'2016-01-27 09:38:10','29','Porter Strategies',1,'',15,2),(62,'2016-01-27 09:38:42','30','Span of Management',1,'',15,2),(63,'2016-01-27 09:39:22','31','Strategic Process Planning',1,'',15,2),(64,'2016-01-27 09:45:45','32','Strategy Selection-TOWS (SWOT)',1,'',15,2),(65,'2016-01-27 09:46:17','33','Taylor Scientific Management',1,'',15,2),(66,'2016-01-27 10:00:42','34','Attitude-Definition, Feature, Component, Factor, Methods, Values & Belief',1,'',15,2),(67,'2016-01-27 10:01:01','35','Challenges for OB, Trends',1,'',15,2),(68,'2016-01-27 10:01:24','36','Conflict-Nature, Definition, Source, Feature, Types, Levels',1,'',15,2),(69,'2016-01-27 10:01:43','37','Creating & Sustaining Culture',1,'',15,2),(70,'2016-01-27 10:05:32','38','Group Decision Making Process',1,'',15,2),(71,'2016-01-27 10:05:52','39','Group Structure',1,'',15,2),(72,'2016-01-27 10:06:17','40','Group Vs Team',1,'',15,2),(73,'2016-01-27 10:06:41','41','Group-Meaning, Definition, Feature, Need',1,'',15,2),(74,'2016-01-27 10:07:09','42','Herzberg\'s 2-factor Theory',1,'',15,2),(75,'2016-01-27 10:12:42','43','Lewin\'s 3-Step Model',1,'',15,2),(76,'2016-01-27 10:13:11','44','Managing Resistance to Change & Stress Management',1,'',15,2),(77,'2016-01-27 10:14:23','45','Maslow\'s Hierarchy Theory of Motivation',1,'',15,2),(78,'2016-01-27 10:14:54','46','Models of OB',1,'',15,2),(79,'2016-01-27 10:15:26','47','Motivation-Definition, Importance, Nature',1,'',15,2),(80,'2016-01-27 10:18:08','48','Organisational Culture-Introduction, Characteristics, Importance, Function',1,'',15,2),(81,'2016-01-27 10:19:02','49','Perception-Factors, Application',1,'',15,2),(82,'2016-01-27 10:22:05','50','Personality-Meaning, Definition',1,'',15,2),(83,'2016-01-27 10:22:53','51','Process of Conflict',1,'',15,2),(84,'2016-01-27 10:23:25','52','Resistance to Change',1,'',15,2),(85,'2016-01-27 10:24:07','53','Roles of OB',1,'',15,2),(86,'2016-01-27 10:26:27','54','Team-Characteristics, Type',1,'',15,2),(87,'2016-01-27 10:27:09','55','Theories of Leadership',1,'',15,2),(88,'2016-01-27 10:27:34','56','Theories of Learning',1,'',15,2),(89,'2016-01-27 10:28:25','57','Theories of Personality',1,'',15,2),(90,'2016-01-27 10:31:36','58','X-Y Theory',1,'',15,2),(91,'2016-01-27 10:32:29','59','Types & Levels of Oranisational Culture',1,'',15,2),(92,'2016-01-27 10:35:46','46','Models of OB',3,'',15,2),(93,'2016-01-27 12:02:28','3','For Registration Call 9584151124 ',2,'Changed slider_image and image_quote.',18,2);
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_content_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_45f3b1d93ec8c61c_uniq` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(11,'ckmg','advertise'),(12,'ckmg','alumni'),(13,'ckmg','buisness_plan'),(7,'ckmg','contactus'),(17,'ckmg','modelpaper'),(8,'ckmg','news'),(16,'ckmg','ppt'),(14,'ckmg','project'),(10,'ckmg','result'),(18,'ckmg','slider_image'),(9,'ckmg','subject'),(15,'ckmg','theorynotes'),(5,'contenttypes','contenttype'),(6,'sessions','session');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_migrations`
+--
+
+DROP TABLE IF EXISTS `django_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_migrations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+LOCK TABLES `django_migrations` WRITE;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2015-11-17 13:59:16'),(2,'auth','0001_initial','2015-11-17 13:59:16'),(3,'admin','0001_initial','2015-11-17 13:59:16'),(4,'contenttypes','0002_remove_content_type_name','2015-11-17 13:59:17'),(5,'auth','0002_alter_permission_name_max_length','2015-11-17 13:59:17'),(6,'auth','0003_alter_user_email_max_length','2015-11-17 13:59:17'),(7,'auth','0004_alter_user_username_opts','2015-11-17 13:59:17'),(8,'auth','0005_alter_user_last_login_null','2015-11-17 13:59:17'),(9,'auth','0006_require_contenttypes_0002','2015-11-17 13:59:17'),(10,'ckmg','0001_initial','2015-11-17 13:59:17'),(11,'ckmg','0002_auto_20151102_0730','2015-11-17 13:59:17'),(12,'ckmg','0003_auto_20151102_0735','2015-11-17 13:59:17'),(13,'sessions','0001_initial','2015-11-17 13:59:17');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_de54fa62` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('07xsk5ga4o8n1mo736xcm9a36qrxajp6','MWVkZGYyODZlY2VmZmNiZTJjNGI2NDAyMzUwYjg5YmY2NWQwMDljMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjJlNjNhODZkODRlMWU5OGJlYzY1YjRlMDlmMGMxNzNiYTFmM2Q5OGEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiI1In0=','2016-01-14 14:28:40'),('79lw6no905xmojjpkie2l3bk07m6bvtf','MmRlYzExODRjMmNlZjRlMmUwZjJlOTI5ODJjNTNhNThlOTU5MzE0ZDp7Il9hdXRoX3VzZXJfaGFzaCI6IjdlZmUzYzJkMDgxNGU2NWMzZjhmYmVkMjBmMzhlN2M3NDkyNzNhZDEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=','2015-12-24 19:30:10'),('7nv11ufx36krvtzz2xxkj863j6r7u3kk','MzhmODdlYzFiYjUxNTJmMjk2YWI2MGIyYzI0ZjU1ZmFhMDg4MmViYzp7Il9hdXRoX3VzZXJfaGFzaCI6IjY4YzhiNTdhYmYwNTZkZDMzMGY3YjA3MzQ1ZWI2YTViNGYwMWUyZTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=','2016-01-19 05:47:36'),('8826s6033o6wku24co98stu5bo96j30z','MjBlMzFlYTQ1NTRiMWZmMjg2ZDRkNmQ1NTZiMTIxMzBmMThjMTQwYzp7Il9hdXRoX3VzZXJfaGFzaCI6ImIxMjZmNzhjMTNmYzA5MWMzYTRmODM0NThkNmU5MjZhYmJhZjJiMzAiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxMiJ9','2016-02-01 08:11:23'),('cf2ipdgcx74a1hqlshxdc602cobjc3s7','N2MxOTY1N2QzNDEyYmVlMWFjNGY4ZTAyYjIxMmY4MzFhZjlkMDJkYjp7Il9hdXRoX3VzZXJfaGFzaCI6ImIwZGI0NGVmY2FlNWQzOTE4ZDJkYmNhNzM3ZDU0OGZmZTUzMjA5ZDgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiI4In0=','2016-01-17 15:52:47'),('cnowo9sk7qzagxzwv4z1f9slgxhsk7td','YWU2ODRkNTQ1MGU5YjcxMTIwYjFjNjRhNTA1NDA4N2Q4ZGM4ZWE3Mzp7Il9hdXRoX3VzZXJfaGFzaCI6IjM0MzNiNDQwMDdmZjdjMzkwZWZkODEzZDkwODc5ZTE4NGYxMWY0YmUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=','2015-12-21 10:34:06'),('gileaho82ybvwwl9tewta2d71qewtcr8','MWEyMjI4ZGY1ZWMyZDRkMzgyYTgyYzFjZjE4MmU1NTdiOTE5ZmM2Yjp7Il9hdXRoX3VzZXJfaGFzaCI6ImE0ZTEyYjBkMTkzYzA0MDRmYjNiYzg0YmZhMDFlZmNjNmMxYzQ5MjIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxNCJ9','2016-03-28 04:48:52'),('mboogn899hi0kld0zsnhon8ezzh1x59z','YWU2ODRkNTQ1MGU5YjcxMTIwYjFjNjRhNTA1NDA4N2Q4ZGM4ZWE3Mzp7Il9hdXRoX3VzZXJfaGFzaCI6IjM0MzNiNDQwMDdmZjdjMzkwZWZkODEzZDkwODc5ZTE4NGYxMWY0YmUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=','2015-12-22 17:00:39'),('mlbge5fdq0lr8xhq9o52whxh3hblvaq5','NzcyMTg3ZjhmNTU0YjJiYmUwOWMxOGQ0Yjk2M2ZiNTUxMjU4MWIzMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImU3Y2ZkYWEyZjUyYjdhNWYyZjg0YjI1OGMzMzUxNjgwOWE3Zjk1ZmMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxNiJ9','2016-05-03 09:06:49'),('nmbyh00ha571jcmjc8gr8qslkwk3yu2f','NzYwMWVlZTBmMzM3NWIyMzEwNGNjZjljNGVhYjRlM2IzYjFiZmY1Yjp7Il9hdXRoX3VzZXJfaGFzaCI6IjY5ODkwMThmYTQwMDViNjQ4MWMyZTBhODdkNzUxY2JkMTQ2Y2U3YzMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyMSJ9','2017-02-21 08:03:37'),('po900qay77lhw21k96r4prhxuwjm6744','MWEyMjI4ZGY1ZWMyZDRkMzgyYTgyYzFjZjE4MmU1NTdiOTE5ZmM2Yjp7Il9hdXRoX3VzZXJfaGFzaCI6ImE0ZTEyYjBkMTkzYzA0MDRmYjNiYzg0YmZhMDFlZmNjNmMxYzQ5MjIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxNCJ9','2016-03-28 04:40:16'),('rcthu3hvax2ohpu7pydjojj67zvjn3kz','YWU2ODRkNTQ1MGU5YjcxMTIwYjFjNjRhNTA1NDA4N2Q4ZGM4ZWE3Mzp7Il9hdXRoX3VzZXJfaGFzaCI6IjM0MzNiNDQwMDdmZjdjMzkwZWZkODEzZDkwODc5ZTE4NGYxMWY0YmUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=','2015-12-24 06:03:27'),('smgi2zgiez3r3p20wxw8rjhozp71lwft','M2I1NmYwODFjMTY3ODAyNjlhMjU3MDgxNTJkMjZhMzQ1MGE0OTVkMTp7Il9hdXRoX3VzZXJfaGFzaCI6IjhhNDUxMjhmNWQzODkyY2I2MGRlMzY3YjFlNTJhNzhhNzRjZDZkYzQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxNSJ9','2016-04-04 04:22:34'),('sujuou6no9iqyyhfa7q78hudslwytipb','NDFhMDc4ODhiMzE3OTBkZTg2MDkxMWZiNmFjYWQ2N2JiZWRkYTA1Yzp7Il9hdXRoX3VzZXJfaGFzaCI6IjdlNTBkOWM1MTNhY2Y5YjVmMjBlMTQ0OGVmNzNkYzAxNDA2MDdhMjQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyMCJ9','2016-09-26 12:09:31');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-02-07  3:59:50

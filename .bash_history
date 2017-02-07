@@ -1121,3 +1121,56 @@ ls
 python manage.py createsuperuser
 sudo service apache2 restart 
 exit
+ls
+cd ck_management/
+ls
+git status
+git add .
+git commit -m"took backup from digital ocean droplet"
+git push
+git status
+git pull
+git status
+git pull
+git status
+git pull
+git status
+git push
+ls
+cd ..
+ls
+nano requirements.txt 
+nano ck_management.wsgi 
+git status
+git init
+git add .
+git commit -m"requirements.txt and wsgi file added"
+git push
+git remote add ckmg_backup https://github.com/Shiv-Dangi/ckmg_backup
+git push ckmg_backup
+git status
+git add .
+git commit -m"first commit"
+git push origin/master
+git push origin-master
+git push origin master
+git push master
+git push ckmg_backup
+git push ckmg_backup master
+ls
+cd ck_management/
+ls
+python manage.py runserver
+workon venv
+ls
+cd ..
+ls
+workon venv
+cd venv
+ls
+source bin/activate
+cd ..
+cd ck_management/
+ls
+python manage.py runserver
+python manage.py createsuperuser
